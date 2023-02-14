@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "The Joel Hilton Film Collection";
+}
+@* Index page/landing page with necessary link to other pages including the podcast page and the film page *@
+<div class="text-center">
+    <h1 class="display-4">Welcome To Joel's Film Collection</h1>
+</div>
+<img src="~/img/JoelHiltonHeadshot.jpg" height="250"/>
+<div>
+    <a asp-controller="Home" asp-action="Podcast">My Podcasts</a>
+</div>
+<div>
+    <a asp-controller="Home" asp-action="Film">Film</a>
+</div>

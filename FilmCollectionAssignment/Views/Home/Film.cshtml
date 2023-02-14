@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Film";
+}
+@model FilmCollectionAssignment.Models.AddFilm
+<h1>This is the Film Link Page</h1>
+
+<div>
+    @* form for the inouts from the user, with submit type button*@
+    <form method="post">
+        <label asp-for="Title">Title:</label>
+        <input asp-for="Title" required/><br />
+
+        <label asp-for="Category">Category:</label>
+        <input asp-for="Category" required/><br />
+
+        <label asp-for="Year">Year:</label>
+        <input asp-for="Year" required/><br />
+
+        <label asp-for="Director">Director:</label>
+        <input asp-for="Director" required/><br />
+
+        <label asp-for="Rating">Rating:</label>
+        <select required asp-for="Rating">
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select><br />
+
+        <label asp-for="Edited">Edited:</label>
+        <select required asp-for="Edited">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select><br />
+
+        <label asp-for="Lent">Lent To:</label>
+        <input asp-for="Lent"/><br />
+
+        <label asp-for="Notes">Notes:</label>
+        <input maxlength="25" asp-for="Notes" /><br />
+
+        <button type="submit">Submit New Film</button>
+    </form>
+</div>
