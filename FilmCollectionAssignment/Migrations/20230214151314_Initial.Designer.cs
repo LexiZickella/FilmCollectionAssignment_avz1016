@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmCollectionAssignment.Migrations
 {
     [DbContext(typeof(FilmAdditions))]
-    [Migration("20230214033032_Second")]
-    partial class Second
+    [Migration("20230214151314_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,6 +50,38 @@ namespace FilmCollectionAssignment.Migrations
                     b.HasKey("FilmId");
 
                     b.ToTable("addFilms");
+
+                    b.HasData(
+                        new
+                        {
+                            FilmId = 1,
+                            Category = "Action/Adventure",
+                            Director = "Christopher Nolan",
+                            Edited = false,
+                            Rating = "PG-13",
+                            Title = "The Dark Knight",
+                            Year = (ushort)2008
+                        },
+                        new
+                        {
+                            FilmId = 2,
+                            Category = "RomCom",
+                            Director = "Damien Chazelle",
+                            Edited = false,
+                            Rating = "PG-13",
+                            Title = "la La Land",
+                            Year = (ushort)2016
+                        },
+                        new
+                        {
+                            FilmId = 3,
+                            Category = "Action/Adventure",
+                            Director = "David Yates",
+                            Edited = false,
+                            Rating = "PG",
+                            Title = "Harry Potter and the Half-Blood Prince",
+                            Year = (ushort)2009
+                        });
                 });
 #pragma warning restore 612, 618
         }

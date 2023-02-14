@@ -2,12 +2,11 @@
 
 namespace FilmCollectionAssignment.Migrations
 {
-    public partial class Second : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                // adds a "addFilms" for every new entry
                 name: "addFilms",
                 columns: table => new
                 {
@@ -26,6 +25,21 @@ namespace FilmCollectionAssignment.Migrations
                 {
                     table.PrimaryKey("PK_addFilms", x => x.FilmId);
                 });
+
+            migrationBuilder.InsertData(
+                table: "addFilms",
+                columns: new[] { "FilmId", "Category", "Director", "Edited", "Lent", "Notes", "Rating", "Title", "Year" },
+                values: new object[] { 1, "Action/Adventure", "Christopher Nolan", false, null, null, "PG-13", "The Dark Knight", (ushort)2008 });
+
+            migrationBuilder.InsertData(
+                table: "addFilms",
+                columns: new[] { "FilmId", "Category", "Director", "Edited", "Lent", "Notes", "Rating", "Title", "Year" },
+                values: new object[] { 2, "RomCom", "Damien Chazelle", false, null, null, "PG-13", "la La Land", (ushort)2016 });
+
+            migrationBuilder.InsertData(
+                table: "addFilms",
+                columns: new[] { "FilmId", "Category", "Director", "Edited", "Lent", "Notes", "Rating", "Title", "Year" },
+                values: new object[] { 3, "Action/Adventure", "David Yates", false, null, null, "PG", "Harry Potter and the Half-Blood Prince", (ushort)2009 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
