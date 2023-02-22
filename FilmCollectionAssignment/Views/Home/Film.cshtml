@@ -14,10 +14,10 @@
         <label hidden asp-for="FilmId"></label>
         <input type="hidden" asp-for="FilmId" />
         <label asp-for="Title">Title:</label>
-        <input asp-for="Title" required/><br />
+        <input asp-for="Title"/><br />
 
         <label asp-for="CategoryId">Category:</label>
-        <select asp-for="CategoryId" required>
+        <select asp-for="CategoryId">
             <option value="">Select a Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
@@ -25,13 +25,13 @@
             }
         </select> <br />
         <label asp-for="Year">Year:</label>
-        <input asp-for="Year" required/><br />
+        <input asp-for="Year"/><br />
 
         <label asp-for="Director">Director:</label>
-        <input asp-for="Director" required/><br />
+        <input asp-for="Director"/><br />
 
         <label asp-for="Rating">Rating:</label>
-        <select required asp-for="Rating">
+        <select asp-for="Rating">
             <option value="G">G</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
@@ -39,7 +39,7 @@
         </select><br />
 
         <label asp-for="Edited">Edited:</label>
-        <select required asp-for="Edited">
+        <select asp-for="Edited">
             <option value="false">No</option>
             <option value="true">Yes</option>
         </select><br />

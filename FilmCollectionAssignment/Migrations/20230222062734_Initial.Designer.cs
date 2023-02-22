@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmCollectionAssignment.Migrations
 {
     [DbContext(typeof(FilmAdditions))]
-    [Migration("20230221173139_Initial")]
+    [Migration("20230222062734_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,6 +27,7 @@ namespace FilmCollectionAssignment.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("Edited")
@@ -36,12 +37,15 @@ namespace FilmCollectionAssignment.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Notes")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(25);
 
                     b.Property<string>("Rating")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<ushort>("Year")
@@ -133,31 +137,36 @@ namespace FilmCollectionAssignment.Migrations
                         new
                         {
                             CategoryId = 7,
-                            CategoryName = "Horror"
+                            CategoryName = "Children"
                         },
                         new
                         {
                             CategoryId = 8,
-                            CategoryName = "Musical"
+                            CategoryName = "Horror"
                         },
                         new
                         {
                             CategoryId = 9,
-                            CategoryName = "Documentary"
+                            CategoryName = "Musical"
                         },
                         new
                         {
                             CategoryId = 10,
-                            CategoryName = "Western"
+                            CategoryName = "Documentary"
                         },
                         new
                         {
                             CategoryId = 11,
-                            CategoryName = "Black Comedy"
+                            CategoryName = "Western"
                         },
                         new
                         {
                             CategoryId = 12,
+                            CategoryName = "Black Comedy"
+                        },
+                        new
+                        {
+                            CategoryId = 13,
                             CategoryName = "Other"
                         });
                 });

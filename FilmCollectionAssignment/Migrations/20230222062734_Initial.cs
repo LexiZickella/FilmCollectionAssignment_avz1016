@@ -25,13 +25,13 @@ namespace FilmCollectionAssignment.Migrations
                 {
                     FilmId = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: false),
                     Year = table.Column<ushort>(nullable: false),
-                    Director = table.Column<string>(nullable: true),
-                    Rating = table.Column<string>(nullable: true),
+                    Director = table.Column<string>(nullable: false),
+                    Rating = table.Column<string>(nullable: false),
                     Edited = table.Column<bool>(nullable: false),
                     Lent = table.Column<string>(nullable: true),
-                    Notes = table.Column<string>(nullable: true),
+                    Notes = table.Column<string>(maxLength: 25, nullable: true),
                     CategoryId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -78,32 +78,37 @@ namespace FilmCollectionAssignment.Migrations
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 7, "Horror" });
+                values: new object[] { 7, "Children" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 8, "Musical" });
+                values: new object[] { 8, "Horror" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 9, "Documentary" });
+                values: new object[] { 9, "Musical" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 10, "Western" });
+                values: new object[] { 10, "Documentary" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 11, "Black Comedy" });
+                values: new object[] { 11, "Western" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
-                values: new object[] { 12, "Other" });
+                values: new object[] { 12, "Black Comedy" });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "CategoryId", "CategoryName" },
+                values: new object[] { 13, "Other" });
 
             migrationBuilder.InsertData(
                 table: "addFilms",

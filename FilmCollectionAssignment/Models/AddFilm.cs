@@ -21,9 +21,11 @@ namespace FilmCollectionAssignment.Models
         public string Rating { get; set; }
         public bool Edited { get; set; }
         public string Lent { get; set; }
+        [MaxLength(25)]
         public string Notes { get; set; }
         
         // Build Foreign Key Relationship
+        [Required]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
     }

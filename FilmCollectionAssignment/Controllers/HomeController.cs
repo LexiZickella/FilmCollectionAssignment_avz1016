@@ -34,17 +34,27 @@ namespace FilmCollectionAssignment.Controllers
         {
             ViewBag.Categories = faContext.Categories.ToList();
 
-            return View();
+            return View(new AddFilm());
         }
 
         [HttpPost]
         public IActionResult Film (AddFilm af)
         {
-            // add to the file and save changes, for the database to work
-            faContext.Add(af);
-            faContext.SaveChanges();
+            ViewBag.Categories = faContext.Categories.ToList();
 
-            return View("Confirmation", af);
+            if (ModelState.IsValid)
+            {
+                // add to the file and save changes, for the database to work
+                faContext.Add(af);
+                faContext.SaveChanges();
+
+                return View("Confirmation", af);
+            }
+            else
+            {
+                return View();
+            }
+            
         }
         public IActionResult MovieList()
         {
@@ -70,10 +80,20 @@ namespace FilmCollectionAssignment.Controllers
         [HttpPost]
         public IActionResult Edit (AddFilm z)
         {
-            faContext.Update(z);
-            faContext.SaveChanges();
+            ViewBag.Categories = faContext.Categories.ToList();
 
-            return RedirectToAction("MovieList");
+            if (ModelState.IsValid)
+            {
+                faContext.Update(z);
+                faContext.SaveChanges();
+
+                return RedirectToAction("MovieList");
+            }
+            else
+            {
+                return View();
+            }
+            
         }
 
         // delete Get and Post 
