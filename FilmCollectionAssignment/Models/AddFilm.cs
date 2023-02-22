@@ -11,14 +11,20 @@ namespace FilmCollectionAssignment.Models
         [Key] //primary key
         [Required]
         public int FilmId { get; set; }
+        [Required]
         public string Title { get; set; }
-        public string Category { get; set; }
+        [Required]
         public ushort Year { get; set; }
+        [Required]
         public string Director { get; set; }
+        [Required] // required inputs
         public string Rating { get; set; }
         public bool Edited { get; set; }
         public string Lent { get; set; }
         public string Notes { get; set; }
-
+        
+        // Build Foreign Key Relationship
+        public int CategoryId { get; set; }
+        public Category Category { get; set; }
     }
 }

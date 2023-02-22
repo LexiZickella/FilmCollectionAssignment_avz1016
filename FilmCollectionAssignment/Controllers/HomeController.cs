@@ -1,5 +1,6 @@
 ﻿using FilmCollectionAssignment.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,13 @@ namespace FilmCollectionAssignment.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-        private FilmAdditions blahContext { get; set; }
+
+        private FilmAdditions faContext { get; set; }
 
         // Constructor
-        public HomeController(ILogger<HomeController> logger, FilmAdditions someName)
+        public HomeController(FilmAdditions someName)
         {
-            _logger = logger;
-            blahContext = someName;
+            faContext = someName;
         }
 
         public IActionResult Index()
@@ -32,6 +32,8 @@ namespace FilmCollectionAssignment.Controllers
         [HttpGet]
         public IActionResult Film ()
         {
+            ViewBag.Categories = faContext.Categories.ToList();
+
             return View();
         }
 
@@ -39,21 +41,56 @@ namespace FilmCollectionAssignment.Controllers
         public IActionResult Film (AddFilm af)
         {
             // add to the file and save changes, for the database to work
-            blahContext.Add(af);
-            blahContext.SaveChanges();
+            faContext.Add(af);
+            faContext.SaveChanges();
 
             return View("Confirmation", af);
         }
-
-        public IActionResult Privacy()
+        public IActionResult MovieList()
         {
-            return View();
+            var newFilms = faContext.addFilms
+                .Include(x => x.Category)
+                .OrderBy(x => x.Category)
+                .ToList();
+
+            return View(newFilms);
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        // Edit Get and Post
+        [HttpGet]
+        public IActionResult Edit (int id)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            ViewBag.Categories = faContext.Categories.ToList();
+
+            var entry = faContext.addFilms.Single(x => x.FilmId == id);
+
+            return View("Film", entry);
+        }
+
+        [HttpPost]
+        public IActionResult Edit (AddFilm z)
+        {
+            faContext.Update(z);
+            faContext.SaveChanges();
+
+            return RedirectToAction("MovieList");
+        }
+
+        // delete Get and Post 
+        [HttpGet]
+        public IActionResult Delete (int id)
+        {
+            var entry = faContext.addFilms.Single(x => x.FilmId == id);
+
+            return View(entry);
+        }
+
+        [HttpPost]
+        public IActionResult Delete (AddFilm af)
+        {
+            faContext.addFilms.Remove(af);
+            faContext.SaveChanges();
+            return RedirectToAction("MovieList");
         }
     }
 }

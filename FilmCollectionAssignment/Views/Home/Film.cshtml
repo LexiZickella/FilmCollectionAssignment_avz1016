@@ -5,14 +5,25 @@
 <h1>This is the Film Link Page</h1>
 
 <div>
-    @* form for the inouts from the user, with submit type button*@
+    @* form for the inputs from the user, with submit type button*@
     <form method="post">
+
+        @* made entries required to meet requirements *@
+        <div asp-validation-summary="All"></div> 
+
+        <label hidden asp-for="FilmId"></label>
+        <input type="hidden" asp-for="FilmId" />
         <label asp-for="Title">Title:</label>
         <input asp-for="Title" required/><br />
 
-        <label asp-for="Category">Category:</label>
-        <input asp-for="Category" required/><br />
-
+        <label asp-for="CategoryId">Category:</label>
+        <select asp-for="CategoryId" required>
+            <option value="">Select a Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select> <br />
         <label asp-for="Year">Year:</label>
         <input asp-for="Year" required/><br />
 
@@ -29,8 +40,8 @@
 
         <label asp-for="Edited">Edited:</label>
         <select required asp-for="Edited">
-            <option value="true">Yes</option>
             <option value="false">No</option>
+            <option value="true">Yes</option>
         </select><br />
 
         <label asp-for="Lent">Lent To:</label>
